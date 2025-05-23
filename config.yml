@@ -1,0 +1,28 @@
+general:
+  use_uvloop: true
+  logging:
+    console:
+      _type: console
+      level: WARN
+
+functions:
+  bob:
+    _type: bob
+    description: "find the most interesting articles and only return 6 articles"
+    chunk_size: 500
+ 
+
+llms:
+  nim_llm:
+    _type: nim
+    description: 
+    model_name: meta/llama-3.1-70b-instruct
+
+    temperature: 0.0
+
+workflow:
+  _type: react_agent
+  tool_names: [bob]
+  parameter: default_value
+  llm_name: nim_llm
+  verbose: true
